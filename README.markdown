@@ -4,35 +4,41 @@ _n._ A light-weight CRUD generator for Cuba using Mote.
 
 ## Description
 
-useful for quickly creating admin backends.
+Useful for quickly creating admin backends.
 
 ## Usage
 
-    # Let's assume you have some kind of model
-    class Article < Sequel::Model
-    end
+Let's assume you have some kind of model.
 
-    # in your main cuba app file
-    Cuba.send :include, Crudo
+``` ruby
+class Article < Sequel::Model
+end
+```
 
-    Cuba.define do
-      on "articles" do
-        run(CRUD(Article, "/articles") do |config|
-          config.textfield :title
-          config.textarea  :description
-          config.dropdown  :status, [["Draft", "draft"], ["Done", "done"]]
-        end)
-      end
-    end
-  
-    # now in views/article/list.mote
-  
-    Listing all articles
-  
-    <a href="/articles/add">Add an Article</a>
+In your main Cuba app file, define a form using `CRUD`:
 
-    % records.each do |record|
-      {{ record.title }}
-    % end
+``` ruby
+Cuba.send :include, Crudo
 
+Cuba.define do
+  on "articles" do
+    run(CRUD(Article, "/articles") do |config|
+      config.textfield :title
+      config.textarea  :description
+      config.dropdown  :status, [["Draft", "draft"], ["Done", "done"]]
+    end)
+  end
+end
+```
 
+Now, create a simple template in `views/article/list.mote`:
+
+``` erb
+Listing all articles
+
+<a href="/articles/add">Add an Article</a>
+
+% records.each do |record|
+  {{ record.title }}
+% end
+```
