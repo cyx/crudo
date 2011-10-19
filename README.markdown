@@ -17,10 +17,10 @@ useful for quickly creating admin backends.
 
     Cuba.define do
       on "articles" do
-        run(CRUD(Article, "/articles") do |e|
-          e.textfield :title
-          e.textarea  :description
-          e.dropdown  :status, [["Draft", "draft"], ["Done", "done"]]
+        run(CRUD(Article, "/articles") do |config|
+          config.textfield :title
+          config.textarea  :description
+          config.dropdown  :status, [["Draft", "draft"], ["Done", "done"]]
         end)
       end
     end
