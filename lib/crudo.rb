@@ -26,13 +26,13 @@ module Crudo
 
     yield config
 
-    self.class.new {
+    self.class.new do
       @url = url
       @config = config
       @namespace = config.namespace
 
       def crud_form(record)
-        partial("layout", {
+        partial("layout",
           session: session,
           content: _crudo_partial("crud-form",
             model:  record,
@@ -40,7 +40,7 @@ module Crudo
             title:  @config.title,
             cancel: @config.url,
             namespace: @config.namespace)
-        })
+        )
       end
 
       def url_for(model)
@@ -101,6 +101,6 @@ module Crudo
           res.redirect @url, 303
         end
       end
-    }
+    end
   end
 end
