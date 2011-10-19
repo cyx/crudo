@@ -1,0 +1,9 @@
+<label>
+  <span>{{ label }}</span>
+
+  {{ input }}
+
+  % if hint
+    <em class="hint">{{ hint }}</em>
+  % end
+</label>

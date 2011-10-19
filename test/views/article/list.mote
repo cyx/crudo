@@ -1,0 +1,7 @@
+Listing Articles
+
+% records.each do |record|
+  <article id="article_{{ record.id }}">
+    {{ record.title }}
+  </article>
+% end

@@ -1,0 +1,7 @@
+this is the layout
+
+% if session[:success]
+  {{ session.delete(:success) }}
+% end
+
+{{ content }}
