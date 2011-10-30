@@ -1,0 +1,18 @@
+<h1>Listing Articles</h1>
+
+% if records.empty?
+  <p>No Articles yet</p>
+% else
+  <ul>
+    % records.each do |record|
+      <li id="article_{{ record.id }}">
+        {{ record.title }}
+
+        <form action="/articles/{{ record.id }}" method="POST">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" name="delete" value="Delete">
+        </form>
+      </li>
+    % end
+  </ul>
+% end

@@ -1,0 +1,31 @@
+<header class="page-header">
+  % if model.new?
+    <h1>Add a New {{title}}</h1>
+  % else
+    <h1>
+      <em>Edit {{title}}:</em> {{model}}
+    </h1>
+  % end
+</header>
+
+<form class="{{namespace}}" action={{url_for(model)}} method="post" enctype="multipart/form-data">
+  <fieldset>
+    <ul class="form-lines">
+      % settings.crudo.fields.each do |helper, att, *args|
+        <li id="{{ namespace }}_{{ att }}">
+          {{send(helper, model, att, *args)}}
+        </li>
+      % end
+    </ul>
+  </fieldset>
+
+  % settings.crudo.partials[:form].each do |template, locals|
+    {{ partial template, locals.merge(model: model) }}
+  % end
+
+  <fieldset class="buttons">
+    <input type="submit" name="submit" value="Save" class="positive">
+    or
+    <a href="{{settings.crudo.url}}" class="negative">Cancel</a>
+  </fieldset>
+</form>
