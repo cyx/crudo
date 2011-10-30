@@ -9,7 +9,7 @@ module Crudo
   autoload :Helpers,     "crudo/helpers"
   autoload :Utils,       "crudo/utils"
 
-  ROOT_DIR = File.expand_path("crudo/views", File.dirname(__FILE__))
+  ROOT_DIR = File.expand_path("../views", File.dirname(__FILE__))
 
   def CRUD(model, url, &block)
     crudo_compile(model) do
