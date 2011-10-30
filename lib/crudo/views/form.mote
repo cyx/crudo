@@ -1,9 +1,9 @@
 <header class="page-header">
   % if model.new?
-    <h1>Add a New {{title}}</h1>
+    <h1>Add a New {{settings.crudo.title}}</h1>
   % else
     <h1>
-      <em>Edit {{title}}:</em> {{model}}
+      <em>Edit {{settings.crudo.title}}:</em> {{model}}
     </h1>
   % end
 </header>

@@ -2,11 +2,10 @@ module Crudo
   class Config
     attr :model
     attr :url
+    attr :namespace
     attr :title
     attr :fields
     attr :partials
-    attr :validators
-    attr :namespace
 
     def initialize(model, url)
       @model = model

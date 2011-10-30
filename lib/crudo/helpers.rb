@@ -8,10 +8,6 @@ module Crudo
       settings.crudo.model
     end
 
-    def title
-      settings.crudo.title
-    end
-
     def set_attributes(record, attributes)
       attributes.each do |field, value|
         record.send(:"#{field}=", value)
