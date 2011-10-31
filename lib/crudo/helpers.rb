@@ -18,6 +18,10 @@ module Crudo
       end
     end
 
+    def select_options(closure, selected = nil, prompt = nil)
+      super(closure.call, selected, prompt)
+    end
+
     def crudo_form(record)
       view(File.expand_path("form.mote", CRUDO_ROOT), model: record, title: title)
     end
