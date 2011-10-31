@@ -9,7 +9,7 @@ module Crudo
   autoload :Helpers,     "crudo/helpers"
   autoload :Utils,       "crudo/utils"
 
-  ROOT_DIR = File.expand_path("../views", File.dirname(__FILE__))
+  CRUDO_ROOT = File.expand_path("../views", File.dirname(__FILE__))
 
   def CRUD(model, url, &block)
     crudo_compile(model) do
@@ -17,6 +17,8 @@ module Crudo
 
       app = self.class.build
       app.plugin Cuba::Settings
+      app.helper Cuba::TextHelpers
+      app.helper Cuba::FormHelpers
       app.helper Crudo::Helpers
 
       app.use Rack::MethodOverride
@@ -25,6 +27,7 @@ module Crudo
       app.set :views, self.class.views
       app.set :layout, self.class.layout
       app.set :saved_message, "You have successfully saved %s."
+      app.set :localized_errors, config.localized_errors || {}
 
       app.define(&Handler)
 

@@ -12,7 +12,7 @@ module Crudo
       end
 
       on default do
-        res.write view("#{namespace}/list", records: model.all)
+        res.write view("#{namespace}/list", records: model.all, title: title)
       end
     end
 

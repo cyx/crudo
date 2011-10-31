@@ -2,16 +2,14 @@ module Crudo
   class Config
     attr :model
     attr :url
-    attr :namespace
-    attr :title
     attr :fields
     attr :partials
+
+    attr_accessor :localized_errors
 
     def initialize(model, url)
       @model = model
       @url = url
-      @namespace = Crudo::Utils.underscore(model.name)
-      @title = Crudo::Utils.titlecase(namespace)
       @fields = []
       @partials = Hash.new { |h, k| h[k] = [] }
 
