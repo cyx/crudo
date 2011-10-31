@@ -12,15 +12,9 @@
   <fieldset>
     <ul class="form-lines">
       % settings.crudo.fields.each do |helper, att, *args|
-        % begin
-          <li id="{{ namespace }}_{{ att }}">
-            {{send(helper, model, att, *args)}}
-          </li>
-        % rescue Exception => e
-          % puts "Gotcha: #{helper}, #{att}, #{args.inspect}"
-          % puts e.message
-          % raise e
-        % end
+        <li id="{{ namespace }}_{{ att }}">
+          {{send(helper, model, att, *args)}}
+        </li>
       % end
     </ul>
   </fieldset>
