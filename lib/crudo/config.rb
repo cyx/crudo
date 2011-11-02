@@ -11,7 +11,7 @@ module Crudo
       @model = model
       @url = url
       @fields = []
-      @partials = Hash.new { |h, k| h[k] = [] }
+      @partials = Hash.new { |h, k| h[k] = {} }
 
       yield self if block_given?
     end
@@ -29,7 +29,7 @@ module Crudo
     end
 
     def dropdown(*args)
-      fields << [:dropdown, *args]
+      fields << [:dropdown_using_lambda, *args]
     end
 
     def textarea(*args)
@@ -40,10 +40,8 @@ module Crudo
       fields << [:filefield, *args]
     end
 
-    def partial(where, template, locals = {})
-      unless partials[where].include?([template, locals])
-        partials[where] << [template, locals]
-      end
+    def partial(where, template, closure = nil)
+      partials[where][template] = closure || lambda { Hash.new }
     end
   end
 end

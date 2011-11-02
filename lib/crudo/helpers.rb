@@ -18,8 +18,13 @@ module Crudo
       end
     end
 
-    def select_options(closure, selected = nil, prompt = nil)
-      super(closure.call, selected, prompt)
+    def dropdown_using_lambda(model, field, closure, hint = nil)
+      input(model, field, hint) do
+        cuba_contrib_partial("select",
+          name: field_name(model, field),
+          options: select_options(closure.call, model.send(field))
+        )
+      end
     end
 
     def crudo_form(record)
