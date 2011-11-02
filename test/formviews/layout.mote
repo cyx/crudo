@@ -1,0 +1,3 @@
+<title>The Crudo Site</title>
+{{ session.delete(:success) }}
+{{ content }}

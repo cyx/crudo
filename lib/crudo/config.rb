@@ -5,12 +5,12 @@ module Crudo
     attr :fields
     attr :partials
 
-    attr_accessor :localized_errors
+    attr_accessor :saved_message
 
     def initialize(model, url)
-      @model = model
-      @url = url
-      @fields = []
+      @model    = model
+      @url      = url
+      @fields   = []
       @partials = Hash.new { |h, k| h[k] = {} }
 
       yield self if block_given?

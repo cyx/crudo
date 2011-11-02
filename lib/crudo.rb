@@ -9,7 +9,7 @@ module Crudo
   autoload :Helpers,     "crudo/helpers"
   autoload :Utils,       "crudo/utils"
 
-  CRUDO_ROOT = File.expand_path("../views", File.dirname(__FILE__))
+  CRUDO_ROOT = File.expand_path("../", File.dirname(__FILE__))
 
   def CRUD(model, url, &block)
     crudo_compile(model) do
@@ -24,10 +24,10 @@ module Crudo
       app.use Rack::MethodOverride
 
       app.set :crudo, config
-      app.set :views, self.class.views
-      app.set :layout, self.class.layout
-      app.set :saved_message, "You have successfully saved %s."
-      app.set :localized_errors, config.localized_errors || {}
+
+      Crudo::Utils.copy([:views, :layout, :localized_errors], self.class, app)
+
+      app.set :saved_message, config.saved_message || "You have successfully saved %s."
 
       app.define(&Handler)
 

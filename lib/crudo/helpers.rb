@@ -28,7 +28,8 @@ module Crudo
     end
 
     def crudo_form(record)
-      view(File.expand_path("form.mote", CRUDO_ROOT), model: record, title: title)
+      view(File.expand_path("views/form.mote", CRUDO_ROOT),
+           model: record, title: title)
     end
 
     def save(record, params)
